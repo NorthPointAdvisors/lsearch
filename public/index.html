@@ -1,0 +1,148 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>LSearch</title>
+  <meta name="description" content="Search your log files comfortably">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="/assets/css/all.css" media="all">
+  <link rel="stylesheet" href="/assets/css/app.css" media="all">
+
+  <link rel="shortcut icon" href="/assets/img/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/img/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/img/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/assets/img/apple-touch-icon-57x57-precomposed.png">
+
+  <!--[if !IE 7]>
+  <style type="text/css">#sf-wrapper { display: table; height: 100% }</style><![endif]-->
+  <script src="/assets/extras/h5bp/js/libs/modernizr-2.5.3.min.js"></script>
+</head>
+<body>
+
+<form id="search-form" action="" class="form-vertical well sidebar-nav">
+  <h1>
+    <i class="icon-search"></i> LSearch
+  </h1>
+  <fieldset>
+    <ul class="nav nav-list">
+      <li class="nav-header">File</li>
+      <div class="controls">
+        <select id="app-name" name="app_name" class="span12"></select>
+      </div>
+      <div class="controls">
+        <select id="date-str" name="date_str" class="span12"></select>
+      </div>
+      <li class="nav-header">Data</li>
+      <div class="controls">
+        <input id="q-main" class="span12" type="text" placeholder="Main">
+      </div>
+    </ul>
+    <button id="search-btn" class="btn btn-success" type="submit">Search</button>
+    <div id="summary"></div>
+    <hr/>
+    <div id="option-ctrl">
+      <ul class="nav nav-list">
+        <li class="nav-header">Controls</li>
+        <div class="controls">
+          <label class="checkbox">
+            <input type="checkbox" id="auto-meta">
+            Show Metadata?
+          </label>
+        </div>
+        <div class="controls">
+          <label class="checkbox">
+            <input type="checkbox" id="auto-scroll">
+            Auto scroll?
+          </label>
+        </div>
+        <div class="controls">
+          <label class="checkbox">
+            <input type="checkbox" id="auto-continue">
+            Continued?
+          </label>
+        </div>
+      </ul>
+    </div>
+  </fieldset>
+</form>
+
+<div id="sf-wrapper">
+  <div class="container-fluid main">
+    <div class="row-fluid">
+      <div class="span12" id="results"></div>
+    </div>
+  </div>
+</div>
+
+<!--<div class="container">-->
+  <!--<footer id="footer">-->
+    <!--<p class="pull-right">-->
+      <!--<i class="icon-github-sign"></i> Built with <a href="http://ajkochanowicz.github.com/Kickstrap/">Kickstrap</a>-->
+    <!--</p>-->
+  <!--</footer>-->
+<!--</div>-->
+
+<script id="results-template" type="text/x-handlebars-template">
+  {{#each lines}}
+  <div class="line">
+    <div class="main">{{line}}</div>
+    <div class="extra">{{{extraHtml}}}</div>
+  </div>
+  {{/each}}
+</script>
+
+<script id="result-template" type="text/x-handlebars-template">
+  <div class="line">
+    <div class="main">{{line}}</div>
+    <div class="extra">{{{extraHtml}}}</div>
+  </div>
+</script>
+
+<script id="summary-template" type="text/x-handlebars-template">
+  <hr/>
+  <h3>Summary</h3>
+  <ul class="nav nav-list">
+    <li><span>app</span>{{app_name}}</li>
+    <li><span>date</span>{{date_str}}</li>
+    <li><span>count</span>{{count}}</li>
+    <li><span>limit</span>{{limit}}</li>
+    <li><span>offset</span>{{offset}}</li>
+    <li><span>size</span>{{size}}</li>
+    <li><span>percent</span>{{percentStr}}</li>
+    <li><span>searches</span>{{searchCount}}</li>
+  </ul>
+  <div id="summary-pbar" class="progress progress-info progress-striped">
+    <div class="bar" style="width: {{percentInt}}%;"></div>
+  </div>
+</script>
+
+<script src="/assets/js/all.js"></script>
+<script src="/assets/js/app.js"></script>
+<script type="text/javascript">
+  Modernizr.load({
+
+  });
+</script>
+<!-- A little ie7- magic -->
+<script type="text/javascript"> $(function () {
+  if ($.browser.msie && parseInt($.browser.version, 10) === 6) {
+    $('.row div[class^="span"]:last-child').addClass("last-child");
+    $('[class="span"]').addClass("margin-left-20");
+    $(':button[class="btn"], :reset[class="btn"], :submit[class="btn"], input[type="button"]').addClass("button-reset");
+    $(":checkbox").addClass("input-checkbox");
+    $('[class^="icon-"], [class=" icon-"]').addClass("icon-sprite");
+    $(".pagination li:first-child a").addClass("pagination-first-child")
+  }
+})
+</script>
+</body>
+</html>

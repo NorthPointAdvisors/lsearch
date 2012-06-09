@@ -1,0 +1,132 @@
+/* @override http://localhost:6324/assets/css/app.css */
+
+#sf-wrapper {
+  margin-left: 220px;
+}
+
+#search-form {
+  position:         fixed;
+  z-index:          100;
+  top:              0;
+  left:             0;
+  width:            180px;
+  min-width:        180px;
+  min-height:       90px;
+  background-color: rgba(234, 234, 234, 0.9);
+  color:         #586e74;
+}
+
+#search-form fieldset ul.nav.nav-list li.nav-header {
+  color: rgba(94, 77, 50, 0.85);
+}
+
+#search-form h1 {
+  text-transform: uppercase;
+  font-size:      28px;
+  color:          #7b5419;
+}
+
+#search-form h1 i {
+  color: #eba538;
+}
+
+#search-form select, #search-form input {
+  width: 150px;
+  color: #0a3641;
+}
+
+#search-form input[type='checkbox'], #auto-meta, #auto-continue, #auto-scroll {
+  width:  auto !important;
+}
+
+#search-form fieldset hr {
+  border-top: 1px dotted rgba(147,160,160,0.25);
+  border-bottom: 0 dotted #ccc;
+}
+
+#search-btn {
+  margin:  6px 0 10px 16px;
+}
+
+#summary {
+  margin: 18px 0 6px 0;
+}
+
+#summary h3 {
+  line-height:    36px;
+  text-align:     center;
+  color:          #586e74;
+  text-transform: uppercase;
+}
+
+#summary ul {
+  padding: 0;;
+}
+
+#summary li:first-child {
+  border-top: 1px dotted rgba(101,123,130,0.25);
+}
+
+#summary li {
+  border-bottom: 1px dotted rgba(101,123,130,0.25);
+  line-height:   18px;
+  padding:       3px 0;
+}
+
+#summary span {
+  display:    inline-block;
+  padding:    0 9px 0 0;
+  width:      65px;
+  text-align: right;
+  color:      #93a0a0;
+  font-style: italic;
+}
+
+#summary-pbar {
+  margin: 12px 0 0 0;
+}
+
+#option-ctrl {
+  margin: 18px 0 6px 0;
+}
+
+#option-ctrl label {
+    color:         #586e74;
+}
+
+#results {
+  border-top:  1px dotted #d5d5d5;
+  padding-top: 10px;
+}
+
+#results div.line {
+  border-bottom: 1px dotted #eaeaea;
+  padding:       9px;
+}
+
+#results div.line div.main {
+  font:  12px/14px "Courier New", Courier, mono;
+  color: #212121;
+}
+
+#results div.line div.extra {
+  font:        10px/12px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  color:       rgba(147, 160, 160, 0.75);
+  padding-top: 3px;
+}
+
+#results div.line div.extra div.lbl {
+  display:      inline;
+  margin-right: 6px;
+}
+
+#results div.line div.extra div.lbl span {
+  color: rgba(235, 165, 56, 0.5);
+}
+
+#results div.line div.extra div.lbl span.txt {
+}
+
+#results div.line div.extra div.lbl span i {
+}
+

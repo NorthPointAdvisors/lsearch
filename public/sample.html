@@ -1,0 +1,342 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/i/378 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Kickstrap</title>
+  <meta name="description" content="">
+
+  <!-- Mobile viewport optimized: h5bp.com/viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+  <!-- Core Bootstrap css + Kickstrap styles -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+  <!-- Uncomment for animated css (https://github.com/daneden/animate.css) -->
+  <link type="text/css" rel="stylesheet" href="/extras/animate/animate.min.css"/>
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png">
+
+  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+
+  <!-- All JavaScript at the bottom, except this Modernizr build.
+       Modernizr enables HTML5 elements & feature detects for optimal performance.
+       Create your own custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="/extras/h5bp/js/libs/modernizr-2.5.3.min.js"></script>
+  <style type="text/css">
+    body {
+      padding-top:    60px;
+      padding-bottom: 40px;
+    }
+    .sidebar-nav {
+      padding: 9px 0;
+    }
+    .card-two, .card-three { display: none; }
+    .modal-body { min-height: 260px; }
+      /* To keep the next/back buttons in the same place */
+  </style>
+</head>
+<body>
+
+<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+chromium.org/developers/how-tos/chrome-frame-getting-started -->
+<!--[if lt IE 7]>
+<p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different
+  browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to
+  experience this site.</p>
+<![endif]-->
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#">Kickstrap</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+      </div>
+      <!-- !.nav-collapse -->
+    </div>
+  </div>
+</div>
+<div id="sf-wrapper">
+  <div class="container main">
+
+    <div class="row hero-unit">
+      <div class="span11 offset1">
+        <h1><img style="vertical-align:middle" src="/apple-touch-icon-114x114-precomposed.png"/> Fast. Modern.
+          Gluten-Free.</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span3">
+        <img src="/extras/themes/sandra/img/weirdguy.jpg"/>
+      </div>
+      <div class="span6">
+        <h1><i class="icon-thumbs-up"></i> Solutions Over Problems</h1>
+
+        <p>After 300 years of peer-reviewed research, Kickstrap Enterprises realized what customers <em>really</em>
+          wanted was solutions, not problems.</p>
+        <br/>
+
+        <h1><i class="icon-question-sign"></i> Kickstrap Solutions</h1>
+
+        <p>Sorry, none at this time, but now that you bring it up, that would be a good idea. Actually, I'm going to
+          bring that up with the team at our next meeting. Are you looking for work?</p>
+        <br/>
+
+        <h1><i class="icomoon-edit"></i> Office supplies</h1>
+
+        <p>Would a "fake" business have a whole closet just for office supplies? Come on.</p>
+        <br/>
+
+        <h1><i class="icon-lemon"></i> Candy at no extra cost</h1>
+
+        <p>To KE, Taking customer service to <em>the next level</em> means treating your customer right. That's why we
+          provide little peppermint candies to our customers in a little glass dish at Judy's desk* at <em>no extra
+            charge.</em></p>
+        <br/>
+      </div>
+      <div class="span3">
+        <img style="height: 420px;" src="/extras/themes/sandra/img/weirdguy2.jpg"/>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="span8 offset2">
+        <blockquote>
+          "No, I don't want to view my account details. Can I speak to a human being? REPRESENTATIVE! HUMAN! [repeatedly
+          presses '0']"
+          <small>Actual Customer</small>
+        </blockquote>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="span4">
+        <h2>We combine purchasing with delivery</h2>
+      </div>
+      <div class="span4">
+        <h2>World class suggestion box</h2>
+      </div>
+      <div class="span4">
+        <h2>Branded email addresses</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span4">
+        <img src="/extras/themes/sandra/img/weirdguy3.jpg"/>
+        <h4>Synergy.</h4>
+
+        <p>Sure, some companies just let you purchase products, but we're different.</p>
+
+        <p>First of all, we're not a company--we're an enterprise. And the difference is so immediately obvious, we
+          won't insult your intelligence by explaining it.</p>
+
+        <p>Second, <em>every single customer who purchases an item</em> will receive that item at no extra charge.</p>
+      </div>
+      <div class="span4">
+        <img src="/extras/themes/sandra/img/pencils.jpg"/>
+        <h4>We have the money. We will pay you. We just need more time.</h4>
+
+        <p>Didn't receive what you expected? While some of our competitors might be satisfied with a lousy 24 hour
+          support staff, Kickstrap Enterprises spares no expense with our Italian Marble suggestion box with a carefully
+          hand-crafted slit.</p>
+
+        <p>Our suggestion box is open 24/7 excluding mornings, afternoons, and weekdays. We welcome you to voice your
+          praise or concern at our convenient Detroit, Michigan office.</p>
+      </div>
+      <div class="span4">
+        <img src="/extras/themes/sandra/img/weirdguy4.jpg"/>
+        <h4>Paradigm.</h4>
+
+        <p>Just to show we take our identity and our clients seriously, we've acquired our very own customized Kickstrap
+          Enterprises email address to conveniently serve our clients.</p>
+
+        <p>To learn more, email us at <a onclick="alert('come on...');" href="">Kickstrap.Enterprises1976@myfreemail4u.info</a>
+        </p>
+      </div>
+    </div>
+
+    <hr>
+  </div>
+  <!-- End .container.main -->
+</div>
+<!-- End #sf-wrapper -->
+<div class="container">
+  <footer id="footer">
+    <p><i class="icon-github-sign"></i> Built with <a href="http://ajkochanowicz.github.com/Kickstrap/">Kickstrap</a>,
+      Images licensed <a href="http://www.flickr.com/photos/fpmurphy">[1]</a> <a
+        href="http://www.flickr.com/photos/30588268@N03">[2]</a> with <a
+        href="http://creativecommons.org/licenses/by/2.0/">Creative Commons</a></p>
+
+    <p>* Edit: Judy died, but we still have her candy.</p>
+
+    <div class="row">
+      <div class="span1 offset1">
+        <h5>Legal</h5>
+      </div>
+      <div class="span1">
+        <h5>Illegal</h5>
+      </div>
+      <div class="span1">
+        <h5>About us</h5>
+      </div>
+      <div class="span1">
+        <h5>About you</h5>
+      </div>
+      <div class="span1">
+        <h5>Privacy</h5>
+      </div>
+      <div class="span1">
+        <h5>Publicy</h5>
+      </div>
+      <div class="span1">
+        <h5>Blog</h5>
+      </div>
+      <div class="span1">
+        <h5>Myspace</h5>
+      </div>
+      <div class="span1">
+        <h5>Timecube</h5>
+      </div>
+      <div class="span1">
+        <h5>Kickstrap</h5>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<!-- !Container -->
+
+<!-- JavaScript at the bottom for fast page loading -->
+
+<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/extras/h5bp/js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+
+<!-- scripts concatenated and minified via build script -->
+<script src="/extras/h5bp/js/plugins.js"></script>
+<script src="/extras/h5bp/js/script.js"></script>
+<!-- Or use this line if you're using H5BP's build script -->
+<!--script src="/extras/h5bp/publish/js/eaf4d2f.js"></script-->
+
+<!-- Full Bootstrap js file. -->
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+mathiasbynens.be/notes/async-analytics-snippet -->
+
+<!-- jGrowl -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/extras/jgrowl/jquery.jgrowl.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    var step = 1;
+    $('.modal, .finish').hide();
+    $.jGrowl("Welcome to Kickstrap. <a href=\"http://stanlemon.net/pages/jgrowl\"><i class=\"icon-book\"></i> jGrowl Docs</a>", { life: 3000 });
+    $('.next').click(function () {
+      //This all could probably be shorter. Let me know if you have idears -Adam
+      if (step < 3) {
+        step++;
+      }
+      console.log(step);
+      updateStep();
+    });
+    $('.back').click(function () {
+      if (step > 1) {
+        step--;
+      }
+      console.log(step);
+      updateStep();
+    });
+    $('.close').click(function () {
+      $('#myModal').hide();
+    });
+    function updateStep() {
+      switch (step) {
+        case 1:
+          $('.card-one').show();
+          $('.card-two, .card-three').hide();
+          $('.second').removeClass('step-full');
+          $('.bar').css('width', '0');
+          break;
+
+        case 2:
+          $('.card-one, .card-three, .finish').hide();
+          $('.card-two, .next').show();
+          $('.second').addClass('step-full');
+          $('.third').removeClass('step-full');
+          $('.bar').css('width', '50%');
+          break;
+
+        case 3:
+          $('.card-one, .card-two, .next').hide();
+          $('.card-three, .finish').show();
+          $('.third').addClass('step-full');
+          $('.bar').css('width', '100%');
+          break;
+      }
+    }
+
+    $(".finish").on("click", function (event) {
+      $('#myModal').addClass('flipOutX');
+    });
+  });
+  $(document).ready().delay(1000).queue(function () {
+    $('.modal').show().addClass('flipInX');
+  });
+</script>
+
+<!-- Chosen -->
+<script type="text/javascript" src="/extras/chosen/chosen.jquery.min.js"></script>
+<!-- Activate Chosen js -->
+<script type="text/javascript"> $(".chzn-select").chosen();
+$(".chzn-select-deselect").chosen({allow_single_deselect: true}); </script>
+
+<script>
+  var _gaq = [
+    ['_setAccount', 'UA-XXXXX-X'],
+    ['_trackPageview']
+  ];
+  (function (d, t) {
+    var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g, s)
+  }(document, 'script'));
+</script>
+</body>
+</html>

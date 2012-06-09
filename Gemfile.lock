@@ -1,0 +1,65 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    cmdparse (2.0.4)
+    coderay (1.0.6)
+    commonjs (0.2.6)
+    jruby-rack (1.1.6)
+    json (1.5.0-java)
+    json-jruby (1.5.0-java)
+      json (= 1.5.0)
+    juicer (1.0.16)
+      cmdparse
+      nokogiri (>= 1.5.0)
+      rubyzip
+    kgio (2.7.4)
+    less (2.2.1)
+      commonjs (~> 0.2.6)
+    method_source (0.7.1)
+    nokogiri (1.5.3)
+    nokogiri (1.5.3-java)
+    presto (0.4.6)
+      presto-crud
+      rack (~> 1.3)
+      tilt (~> 1.3)
+    presto-crud (0.0.1)
+    pry (0.9.9.6)
+      coderay (~> 1.0.5)
+      method_source (~> 0.7.1)
+      slop (>= 2.4.4, < 3)
+    pry (0.9.9.6-java)
+      coderay (~> 1.0.5)
+      method_source (~> 0.7.1)
+      slop (>= 2.4.4, < 3)
+      spoon (~> 0.0)
+    rack (1.4.1)
+    raindrops (0.9.0)
+    rubyzip (0.9.8)
+    sass (3.1.19)
+    slop (2.4.4)
+    spoon (0.0.1)
+    tilt (1.3.3)
+    trinidad (1.3.5)
+      jruby-rack (>= 1.1.5)
+      trinidad_jars (>= 1.0.2)
+    trinidad_jars (1.0.3)
+    unicorn (4.3.1)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
+    yajl-ruby (1.1.0)
+
+PLATFORMS
+  java
+  ruby
+
+DEPENDENCIES
+  json-jruby
+  juicer
+  less
+  presto
+  pry
+  sass
+  trinidad
+  unicorn
+  yajl-ruby

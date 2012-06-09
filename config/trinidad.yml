@@ -1,0 +1,21 @@
+---
+  address: 0.0.0.0
+  port: 6324
+  ajp:
+    port: 6327
+
+  environment: production
+  jruby_min_runtimes: 1
+  jruby_max_runtimes: 1
+  libs_dir: lib
+  classes_dir: classes
+  context_path: /
+#  web_app_dir: /var/www/rails # system path where the application is located, by default is PWD
+  rackup: config.ru
+  public: public
+#  log: log level
+
+#  extensions:  # if you are using any server extension
+#    daemon: # example, daemon extension
+#      pid_file: # pid file
+#      jvm_args: # additional arguments for the thread that runs the daemon
