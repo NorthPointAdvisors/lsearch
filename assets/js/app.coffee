@@ -157,7 +157,7 @@ App =
     if reset
       @summary.reset()
       @summary.render()
-      $('#results').html '<p>Searching...</p>'
+      $('#results').html '<p class="legend">Searching...</p>'
     url = "/grep/#{$("#app-name").val()}"
     options =
       date:   $("#date-str").val()
@@ -168,20 +168,17 @@ App =
       $('#results').html '' if reset
       self.summary.update data
       self.stopSpin()
-      context =
-        lines: for object in data.lines
-          new LogEntry(object)
-      $('#results').append Handlebars.templates.results(context)
-      if self.summary.canDoMore()
-        if self.stopped
-          console.log "App : search : stopped : will NOT continue searching ..."
-          self
-        else
-          console.log "App : search : continue : will continue searching ..."
+      if data.count > 0
+        context =
+          lines: for object in data.lines
+            new LogEntry(object)
+        $('#results').append Handlebars.templates.results(context)
+        if self.summary.canDoMore() && !self.stopped
           self.search false
+        else
+          self
       else
-        console.log "App : search : enough : cannot do more ..."
-        self
+        $('#results').html '<p class="legend">No results found...</p>'
 
   bindOptions: ->
     self = @

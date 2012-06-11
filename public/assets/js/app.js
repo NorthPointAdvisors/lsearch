@@ -239,7 +239,7 @@
       if (reset) {
         this.summary.reset();
         this.summary.render();
-        $('#results').html('<p>Searching...</p>');
+        $('#results').html('<p class="legend">Searching...</p>');
       }
       url = "/grep/" + ($("#app-name").val());
       options = {
@@ -255,30 +255,27 @@
         }
         self.summary.update(data);
         self.stopSpin();
-        context = {
-          lines: (function() {
-            var _i, _len, _ref, _results;
-            _ref = data.lines;
-            _results = [];
-            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-              object = _ref[_i];
-              _results.push(new LogEntry(object));
-            }
-            return _results;
-          })()
-        };
-        $('#results').append(Handlebars.templates.results(context));
-        if (self.summary.canDoMore()) {
-          if (self.stopped) {
-            console.log("App : search : stopped : will NOT continue searching ...");
-            return self;
-          } else {
-            console.log("App : search : continue : will continue searching ...");
+        if (data.count > 0) {
+          context = {
+            lines: (function() {
+              var _i, _len, _ref, _results;
+              _ref = data.lines;
+              _results = [];
+              for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+                object = _ref[_i];
+                _results.push(new LogEntry(object));
+              }
+              return _results;
+            })()
+          };
+          $('#results').append(Handlebars.templates.results(context));
+          if (self.summary.canDoMore() && !self.stopped) {
             return self.search(false);
+          } else {
+            return self;
           }
         } else {
-          console.log("App : search : enough : cannot do more ...");
-          return self;
+          return $('#results').html('<p class="legend">No results found...</p>');
         }
       });
     },
