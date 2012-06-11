@@ -155,7 +155,9 @@ App =
     if reset
       @summary.reset()
       @summary.render()
-      $('#results').html '<p class="legend">Searching...</p>'
+      #$('#results').html '<p class="legend">Searching...</p>'
+      $('#results').html ''
+      $.jGrowl "Searching..."
     url = "/grep/#{$("#app-name").val()}"
     options =
       date:   $("#date-str").val()
