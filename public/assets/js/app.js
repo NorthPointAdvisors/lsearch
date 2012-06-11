@@ -237,7 +237,8 @@
       if (reset) {
         this.summary.reset();
         this.summary.render();
-        $('#results').html('<p class="legend">Searching...</p>');
+        $('#results').html('');
+        $.jGrowl("Searching...");
       }
       url = "/grep/" + ($("#app-name").val());
       options = {
