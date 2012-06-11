@@ -130,7 +130,7 @@ App =
 
   compileTemplates: ->
     Handlebars.templates ?= {}
-    names = ['summary', 'results', 'result']
+    names = ['summary', 'results', 'result', 'searching', 'no-results', 'error']
     for name in names
       tplId = "##{name}-template"
       html   = $(tplId).html()
