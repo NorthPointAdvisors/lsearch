@@ -223,8 +223,8 @@
       return this.searchButton().button();
     },
     spin: function() {
-      this.searchButton().attr("disabled", true);
-      return this.searchButton().button('searching');
+      this.searchButton().button('searching');
+      return this.searchButton().attr("disabled", true);
     },
     stopSpin: function() {
       this.searchButton().button('reset');
