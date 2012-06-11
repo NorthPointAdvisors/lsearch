@@ -163,7 +163,7 @@ App =
       else
         @
     else
-      $('#results').html Handlebars.templates.no_results({})
+      $('#results').html Handlebars.templates.noresults({})
 
   searchError: (xhr, code, e) ->
     context =

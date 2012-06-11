@@ -252,7 +252,7 @@
           return this;
         }
       } else {
-        return $('#results').html(Handlebars.templates.no_results({}));
+        return $('#results').html(Handlebars.templates.noresults({}));
       }
     },
     searchError: function(xhr, code, e) {
