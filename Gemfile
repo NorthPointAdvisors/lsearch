@@ -2,6 +2,9 @@ source :rubygems
 
 gem 'presto'
 
+gem 'capistrano'
+gem 'capistrano-ext'
+
 platforms :jruby do
   gem 'trinidad'
   gem 'json-jruby'
