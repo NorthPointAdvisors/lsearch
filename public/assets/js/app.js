@@ -239,6 +239,7 @@
       if (reset) {
         this.summary.reset();
         this.summary.render();
+        $('#results').html('');
       }
       url = "/grep/" + ($("#app-name").val());
       options = {

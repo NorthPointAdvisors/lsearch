@@ -157,6 +157,7 @@ App =
     if reset
       @summary.reset()
       @summary.render()
+      $('#results').html ''
     url = "/grep/#{$("#app-name").val()}"
     options =
       date:   $("#date-str").val()
