@@ -45,33 +45,34 @@
       <div class="controls">
         <input id="q-main" class="span12" type="text" placeholder="Main">
       </div>
+      <li>
+        <button id="search-btn"
+                class="btn btn-success"
+                data-searching-text="Searching ..."
+                type="submit">
+          Search
+        </button>
+      </li>
     </ul>
-    <button id="search-btn" class="btn btn-success" type="submit">Search</button>
-    <div id="summary"></div>
-    <hr/>
+    <!--<hr/>-->
     <div id="option-ctrl">
+      <h3>Controls</h3>
       <ul class="nav nav-list">
-        <li class="nav-header">Controls</li>
-        <div class="controls">
-          <label class="checkbox">
-            <input type="checkbox" id="auto-meta">
-            Show Metadata?
-          </label>
-        </div>
-        <div class="controls">
-          <label class="checkbox">
-            <input type="checkbox" id="auto-scroll">
-            Auto scroll?
-          </label>
-        </div>
-        <div class="controls">
-          <label class="checkbox">
-            <input type="checkbox" id="auto-continue">
-            Continued?
-          </label>
-        </div>
+        <li>
+          <span>Metadata?</span>
+          <input type="checkbox" id="auto-meta">
+        </li>
+        <li>
+          <span>Auto scroll?</span>
+          <input type="checkbox" id="auto-scroll">
+        </li>
+        <li>
+          <span>Continued?</span>
+          <input type="checkbox" id="auto-continue">
+        </li>
       </ul>
     </div>
+    <div id="summary"></div>
   </fieldset>
 </form>
 
@@ -84,11 +85,11 @@
 </div>
 
 <!--<div class="container">-->
-  <!--<footer id="footer">-->
-    <!--<p class="pull-right">-->
-      <!--<i class="icon-github-sign"></i> Built with <a href="http://ajkochanowicz.github.com/Kickstrap/">Kickstrap</a>-->
-    <!--</p>-->
-  <!--</footer>-->
+<!--<footer id="footer">-->
+<!--<p class="pull-right">-->
+<!--<i class="icon-github-sign"></i> Built with <a href="http://ajkochanowicz.github.com/Kickstrap/">Kickstrap</a>-->
+<!--</p>-->
+<!--</footer>-->
 <!--</div>-->
 
 <script id="results-template" type="text/x-handlebars-template">
@@ -108,15 +109,15 @@
 </script>
 
 <script id="summary-template" type="text/x-handlebars-template">
-  <hr/>
+  <!--<hr/>-->
   <h3>Summary</h3>
   <ul class="nav nav-list">
-    <li><span>app</span>{{app_name}}</li>
-    <li><span>date</span>{{date_str}}</li>
+    <!--<li><span>app</span>{{app_name}}</li>-->
+    <!--<li><span>date</span>{{date_str}}</li>-->
     <li><span>count</span>{{count}}</li>
-    <li><span>limit</span>{{limit}}</li>
-    <li><span>offset</span>{{offset}}</li>
-    <li><span>size</span>{{size}}</li>
+    <!--<li><span>limit</span>{{limit}}</li>-->
+    <!--<li><span>offset</span>{{offset}}</li>-->
+    <!--<li><span>size</span>{{size}}</li>-->
     <li><span>percent</span>{{percentStr}}</li>
     <li><span>searches</span>{{searchCount}}</li>
   </ul>

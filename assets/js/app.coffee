@@ -138,8 +138,25 @@ App =
       Handlebars.templates[name] = template
     Handlebars.templates
 
+  searchButton: ->
+    $('#search-btn')
+
+  setButtons: ->
+    @searchButton().button()
+
+  spin: ->
+    @searchButton().attr "disabled", true
+    @searchButton().button 'searching'
+
+  stopSpin: ->
+    @searchButton().button 'reset'
+    @searchButton().attr "disabled", false
+
   search: (reset = true) ->
-    @summary.reset() if reset
+    @spin()
+    if reset
+      @summary.reset()
+      @summary.render()
     url = "/grep/#{$("#app-name").val()}"
     options =
       date:   $("#date-str").val()
@@ -148,6 +165,7 @@ App =
     self = this
     $.getJSON url, options, (data) ->
       self.summary.update data
+      self.stopSpin()
       context =
         lines: for object in data.lines
           new LogEntry(object)
@@ -208,13 +226,18 @@ App =
 
   stopped: true
 
+  setup: ->
+    @compileTemplates()
+    @summary.reset()
+    @bindOptions()
+    @setButtons()
+
+
 window.App = App
 window.LogEntry = LogEntry
 
 $ ->
-  App.compileTemplates()
-  App.summary.reset()
-  App.bindOptions()
+  App.setup()
   App.getNames()
   App.getDates()
 

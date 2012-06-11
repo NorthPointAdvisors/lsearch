@@ -1,8 +1,8 @@
 ---
   address: 0.0.0.0
-  port: 6324
-  ajp:
-    port: 6327
+  port: 8071
+#  ajp:
+#    port: 6327
 
   environment: production
   jruby_min_runtimes: 1

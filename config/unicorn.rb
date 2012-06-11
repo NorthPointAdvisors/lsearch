@@ -10,7 +10,7 @@ preload_app true
 
 timeout 60
 
-listen 6324, :backlog => 64
+listen 8071, :backlog => 64
 
 pid APP_ROOT + "/tmp/pids/unicorn.pid"
 

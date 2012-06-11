@@ -216,13 +216,29 @@
       }
       return Handlebars.templates;
     },
+    searchButton: function() {
+      return $('#search-btn');
+    },
+    setButtons: function() {
+      return this.searchButton().button();
+    },
+    spin: function() {
+      this.searchButton().attr("disabled", true);
+      return this.searchButton().button('searching');
+    },
+    stopSpin: function() {
+      this.searchButton().button('reset');
+      return this.searchButton().attr("disabled", false);
+    },
     search: function(reset) {
       var options, self, url;
       if (reset == null) {
         reset = true;
       }
+      this.spin();
       if (reset) {
         this.summary.reset();
+        this.summary.render();
       }
       url = "/grep/" + ($("#app-name").val());
       options = {
@@ -234,6 +250,7 @@
       return $.getJSON(url, options, function(data) {
         var context, object;
         self.summary.update(data);
+        self.stopSpin();
         context = {
           lines: (function() {
             var _i, _len, _ref, _results;
@@ -317,7 +334,13 @@
         return this.stopped = true;
       }
     },
-    stopped: true
+    stopped: true,
+    setup: function() {
+      this.compileTemplates();
+      this.summary.reset();
+      this.bindOptions();
+      return this.setButtons();
+    }
   };
 
   window.App = App;
@@ -325,9 +348,7 @@
   window.LogEntry = LogEntry;
 
   $(function() {
-    App.compileTemplates();
-    App.summary.reset();
-    App.bindOptions();
+    App.setup();
     App.getNames();
     App.getDates();
     return $("#search-btn").click(function(event) {
