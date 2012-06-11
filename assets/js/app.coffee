@@ -151,17 +151,17 @@ App =
     @searchButton().button('reset')
 
   searchSuccess: (data, code, xhr) ->
-    self.summary.update data
-    self.stopSpin()
+    @summary.update data
+    @stopSpin()
     if data.count > 0
       context =
         lines: for object in data.lines
           new LogEntry(object)
       $('#results').append Handlebars.templates.results(context)
-      if self.summary.canDoMore() && !self.stopped
-        self.search false
+      if @summary.canDoMore() && !@stopped
+        @search false
       else
-        self
+        @
     else
       $('#results').html Handlebars.templates.no_results({})
 
@@ -182,12 +182,13 @@ App =
     $.ajax
       url: "/grep/#{$("#app-name").val()}"
       dataType: "json"
+      context: this
       data:
         date:   $("#date-str").val()
         offset: @summary.offset
         main:   $("#q-main").val()
-      success: @@searchSuccess
-      error: @@searchError
+      success: @searchSuccess
+      error: @searchError
 
   bindOptions: ->
     self = @

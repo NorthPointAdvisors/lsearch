@@ -230,8 +230,8 @@
     },
     searchSuccess: function(data, code, xhr) {
       var context, object;
-      self.summary.update(data);
-      self.stopSpin();
+      this.summary.update(data);
+      this.stopSpin();
       if (data.count > 0) {
         context = {
           lines: (function() {
@@ -246,10 +246,10 @@
           })()
         };
         $('#results').append(Handlebars.templates.results(context));
-        if (self.summary.canDoMore() && !self.stopped) {
-          return self.search(false);
+        if (this.summary.canDoMore() && !this.stopped) {
+          return this.search(false);
         } else {
-          return self;
+          return this;
         }
       } else {
         return $('#results').html(Handlebars.templates.no_results({}));
@@ -279,6 +279,7 @@
       return $.ajax({
         url: "/grep/" + ($("#app-name").val()),
         dataType: "json",
+        context: this,
         data: {
           date: $("#date-str").val(),
           offset: this.summary.offset,
