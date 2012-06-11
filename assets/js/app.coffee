@@ -150,6 +150,29 @@ App =
   stopSpin: ->
     @searchButton().button('reset')
 
+  searchSuccess: (data, code, xhr) ->
+    $('#results').html '' if reset
+    self.summary.update data
+    self.stopSpin()
+    if data.count > 0
+      context =
+        lines: for object in data.lines
+          new LogEntry(object)
+      $('#results').append Handlebars.templates.results(context)
+      if self.summary.canDoMore() && !self.stopped
+        self.search false
+      else
+        self
+    else
+      $.jGrowl "No results found..."
+
+  searchError: (xhr, code, e) ->
+    context =
+      xhr: xhr
+      code: code
+      e: e
+    $('#results').html Handlebars.templates.results(context)
+
   search: (reset = true) ->
     @spin()
     if reset
@@ -158,27 +181,16 @@ App =
       #$('#results').html '<p class="legend">Searching...</p>'
       $('#results').html ''
       $.jGrowl "Searching..."
-    url = "/grep/#{$("#app-name").val()}"
-    options =
-      date:   $("#date-str").val()
-      offset: @summary.offset
-      main:   $("#q-main").val()
     self = this
-    $.getJSON url, options, (data) ->
-      $('#results').html '' if reset
-      self.summary.update data
-      self.stopSpin()
-      if data.count > 0
-        context =
-          lines: for object in data.lines
-            new LogEntry(object)
-        $('#results').append Handlebars.templates.results(context)
-        if self.summary.canDoMore() && !self.stopped
-          self.search false
-        else
-          self
-      else
-        $.jGrowl "No results found..."
+    $.ajax
+      url: "/grep/#{$("#app-name").val()}"
+      dataType: "json"
+      data:
+        date:   $("#date-str").val()
+        offset: @summary.offset
+        main:   $("#q-main").val()
+      success: @searchSuccess
+      error: @searchError
 
   bindOptions: ->
     self = @
