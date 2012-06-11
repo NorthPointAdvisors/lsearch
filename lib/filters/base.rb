@@ -4,9 +4,9 @@ class LineFilter
     if params[:main]
       rx = Regexp.new params[:main]
       @ok = line =~ rx
-      puts "Filtered by #{rx.inspect} : [#{@ok ? 'OK' : 'missed'}] : #{line}"
+      #puts "Filtered by #{rx.inspect} : [#{@ok ? 'OK' : 'missed'}] : #{line}"
     else
-      puts "Not filtering, no filter ..."
+      #puts "Not filtering, no filter ..."
     end
   end
 

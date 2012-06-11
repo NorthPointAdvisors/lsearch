@@ -11,9 +11,9 @@ require File.expand_path(File.dirname(__FILE__) + '/line_filter')
 class App
 
   ROOT = Dir.pwd
-  puts ">> ROOT   : #{ROOT}"
+  #puts ">> ROOT   : #{ROOT}"
   PUBLIC = "#{ROOT}/public"
-  puts ">> PUBLIC : #{PUBLIC}"
+  #puts ">> PUBLIC : #{PUBLIC}"
 
   include Presto
 
@@ -23,36 +23,36 @@ class App
 
   def index(*args)
     if args.empty?
-      puts "index : args #{args.inspect} : serving index.html ..."
+      #puts "index : args #{args.inspect} : serving index.html ..."
       serve_file "index.html"
     else
       path = path_for args
-      puts "index : args #{args.inspect} : found path : #{path} ..."
+      #puts "index : args #{args.inspect} : found path : #{path} ..."
       if File.file? path
-        puts "index : args #{args.inspect} : serving static #{path} ..."
+        #puts "index : args #{args.inspect} : serving static #{path} ..."
         serve_file path
       else
-        puts "index : args #{args.inspect} : [[ ERROR ]] serving 404 for #{path} ..."
+        #puts "index : args #{args.inspect} : [[ ERROR ]] serving 404 for #{path} ..."
         http.error(404, 'File not found')
       end
     end
   end
 
   def app_names(*args)
-    puts "app_names : args #{args.inspect}"
+    #puts "app_names : args #{args.inspect}"
     LogFile.app_names.to_json
   end
 
   def dates(*args)
-    puts "dates : args #{args.inspect}"
+    #puts "dates : args #{args.inspect}"
     LogFile.dates.to_json
   end
 
   def grep(*args)
-    puts " grep | args #{args.inspect} | params : #{http.params.inspect} ".center(120, "=")
+    #puts " grep | args #{args.inspect} | params : #{http.params.inspect} ".center(120, "=")
     app_name = args[0].to_s.strip
     date_str = http.params[:date].to_s.strip
-    puts "grep : app_name [#{app_name}] : date_str [#{date_str}]"
+    #puts "grep : app_name [#{app_name}] : date_str [#{date_str}]"
     if LogFile.has_app?(app_name)
       if date_str.empty?
         { :status => :error, :message => "Date range was missing" }.to_json
@@ -67,7 +67,7 @@ class App
           main_filter = http.params[:main].to_s.strip
           unless main_filter.empty?
             options[:filters][:main] = main_filter
-            puts "Filtering by #{options[:filter].inspect} ..."
+            #puts "Filtering by #{options[:filter].inspect} ..."
           end
           hsh          = log.grep options
           hsh[:status] = :success
@@ -82,22 +82,22 @@ class App
   end
 
   def tail(*args)
-    puts "tail : args #{args.inspect}"
+    #puts "tail : args #{args.inspect}"
     { }.to_json
   end
 
   private
 
   def path_for(parts)
-    puts "path_for : #{parts.inspect} (#{parts.class.name})"
+    #puts "path_for : #{parts.inspect} (#{parts.class.name})"
     "#{PUBLIC}/#{parts.join("/")}"
   end
 
   def serve_file(path)
-    puts "serve_file : #{path} ..."
+    #puts "serve_file : #{path} ..."
     new_path = path[0, PUBLIC.size] == PUBLIC ? path : "#{PUBLIC}/#{path}"
     new_path.gsub! '..', ''
-    puts "serving file #{new_path} ..."
+    #puts "serving file #{new_path} ..."
     http.send_file new_path
   end
 

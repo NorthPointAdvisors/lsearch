@@ -22,5 +22,3 @@ set :bundle_dir, fetch(:shared_path)+"/bundle"
 set :bundle_flags, "--deployment --quiet"
 set :bundle_without, [:development, :test]
 
-load File.expand_path(File.dirname(__FILE__) + '/deploy/shared.rb')
-
