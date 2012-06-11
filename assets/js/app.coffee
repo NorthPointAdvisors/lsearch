@@ -151,7 +151,6 @@ App =
     @searchButton().button('reset')
 
   searchSuccess: (data, code, xhr) ->
-    $('#results').html '' if reset
     self.summary.update data
     self.stopSpin()
     if data.count > 0
@@ -178,7 +177,7 @@ App =
     if reset
       @summary.reset()
       @summary.render()
-      $('#results').html Handlebars.templates.searching({})
+      $('#results').html ''
     self = this
     $.ajax
       url: "/grep/#{$("#app-name").val()}"

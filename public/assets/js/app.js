@@ -230,9 +230,6 @@
     },
     searchSuccess: function(data, code, xhr) {
       var context, object;
-      if (reset) {
-        $('#results').html('');
-      }
       self.summary.update(data);
       self.stopSpin();
       if (data.count > 0) {
@@ -276,7 +273,7 @@
       if (reset) {
         this.summary.reset();
         this.summary.render();
-        $('#results').html(Handlebars.templates.searching({}));
+        $('#results').html('');
       }
       self = this;
       return $.ajax({
