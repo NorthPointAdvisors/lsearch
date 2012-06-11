@@ -273,7 +273,7 @@
             return self;
           }
         } else {
-          return $('#results').html('<p class="legend">No results found...</p>');
+          return $.jGrowl("No results found...");
         }
       });
     },

@@ -176,7 +176,7 @@ App =
         else
           self
       else
-        $('#results').html '<p class="legend">No results found...</p>'
+        $.jGrowl "No results found..."
 
   bindOptions: ->
     self = @
