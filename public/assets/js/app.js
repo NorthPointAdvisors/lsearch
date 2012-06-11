@@ -223,10 +223,10 @@
       return this.searchButton().button();
     },
     spin: function() {
-      return this.searchButton().button('searching').attr("disabled", "true");
+      return this.searchButton().button('loading');
     },
     stopSpin: function() {
-      return this.searchButton().button('reset').attr("disabled", "false");
+      return this.searchButton().button('reset');
     },
     search: function(reset) {
       var options, self, url;
