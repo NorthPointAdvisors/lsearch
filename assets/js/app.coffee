@@ -186,8 +186,8 @@ App =
         date:   $("#date-str").val()
         offset: @summary.offset
         main:   $("#q-main").val()
-      success: @searchSuccess
-      error: @searchError
+      success: @@searchSuccess
+      error: @@searchError
 
   bindOptions: ->
     self = @
