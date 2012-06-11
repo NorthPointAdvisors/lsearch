@@ -224,11 +224,11 @@
     },
     spin: function() {
       this.searchButton().button('searching');
-      return this.searchButton().attr("disabled", true);
+      return this.searchButton().attr("disabled", "true");
     },
     stopSpin: function() {
       this.searchButton().button('reset');
-      return this.searchButton().attr("disabled", false);
+      return this.searchButton().attr("disabled", "false");
     },
     search: function(reset) {
       var options, self, url;

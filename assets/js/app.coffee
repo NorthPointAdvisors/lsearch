@@ -146,11 +146,11 @@ App =
 
   spin: ->
     @searchButton().button 'searching'
-    @searchButton().attr "disabled", true
+    @searchButton().attr "disabled", "true"
 
   stopSpin: ->
     @searchButton().button 'reset'
-    @searchButton().attr "disabled", false
+    @searchButton().attr "disabled", "false"
 
   search: (reset = true) ->
     @spin()
