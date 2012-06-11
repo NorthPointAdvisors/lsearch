@@ -239,7 +239,7 @@
       if (reset) {
         this.summary.reset();
         this.summary.render();
-        $('#results').html('');
+        $('#results').html('<p>Searching...</p>');
       }
       url = "/grep/" + ($("#app-name").val());
       options = {
@@ -250,6 +250,9 @@
       self = this;
       return $.getJSON(url, options, function(data) {
         var context, object;
+        if (reset) {
+          $('#results').html('');
+        }
         self.summary.update(data);
         self.stopSpin();
         context = {

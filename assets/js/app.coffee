@@ -157,7 +157,7 @@ App =
     if reset
       @summary.reset()
       @summary.render()
-      $('#results').html ''
+      $('#results').html '<p>Searching...</p>'
     url = "/grep/#{$("#app-name").val()}"
     options =
       date:   $("#date-str").val()
@@ -165,6 +165,7 @@ App =
       main:   $("#q-main").val()
     self = this
     $.getJSON url, options, (data) ->
+      $('#results').html '' if reset
       self.summary.update data
       self.stopSpin()
       context =
