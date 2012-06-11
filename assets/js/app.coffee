@@ -164,7 +164,7 @@ App =
       else
         self
     else
-      $.jGrowl "No results found..."
+      $('#results').html Handlebars.templates.no_results({})
 
   searchError: (xhr, code, e) ->
     context =
@@ -178,9 +178,7 @@ App =
     if reset
       @summary.reset()
       @summary.render()
-      #$('#results').html '<p class="legend">Searching...</p>'
-      $('#results').html ''
-      $.jGrowl "Searching..."
+      $('#results').html Handlebars.templates.searching({})
     self = this
     $.ajax
       url: "/grep/#{$("#app-name").val()}"

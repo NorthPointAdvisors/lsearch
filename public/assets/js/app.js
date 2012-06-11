@@ -255,7 +255,7 @@
           return self;
         }
       } else {
-        return $.jGrowl("No results found...");
+        return $('#results').html(Handlebars.templates.no_results({}));
       }
     },
     searchError: function(xhr, code, e) {
@@ -276,8 +276,7 @@
       if (reset) {
         this.summary.reset();
         this.summary.render();
-        $('#results').html('');
-        $.jGrowl("Searching...");
+        $('#results').html(Handlebars.templates.searching({}));
       }
       self = this;
       return $.ajax({
