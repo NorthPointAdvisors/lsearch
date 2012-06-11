@@ -206,7 +206,7 @@
       if ((_ref = Handlebars.templates) == null) {
         Handlebars.templates = {};
       }
-      names = ['summary', 'results', 'result', 'searching', 'no-results', 'error'];
+      names = ['summary', 'results', 'result', 'searching', 'noresults', 'error'];
       for (_i = 0, _len = names.length; _i < _len; _i++) {
         name = names[_i];
         tplId = "#" + name + "-template";
