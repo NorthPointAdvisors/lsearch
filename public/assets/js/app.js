@@ -216,82 +216,17 @@
       }
       return Handlebars.templates;
     },
-    searchButton: function() {
-      return $('#search-btn');
-    },
-    setButtons: function() {
-      return this.searchButton().button();
-    },
-    spin: function() {
-      return this.searchButton().button('loading');
-    },
-    stopSpin: function() {
-      return this.searchButton().button('reset');
-    },
-    searchSuccess: function(data, code, xhr) {
-      var context, object;
-      this.summary.update(data);
-      this.stopSpin();
-      if (data.count > 0) {
-        context = {
-          lines: (function() {
-            var _i, _len, _ref, _results;
-            _ref = data.lines;
-            _results = [];
-            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-              object = _ref[_i];
-              _results.push(new LogEntry(object));
-            }
-            return _results;
-          })()
-        };
-        $('#results').append(Handlebars.templates.results(context));
-        if (this.summary.canDoMore() && !this.stopped) {
-          return this.search(false);
-        } else {
-          return this;
-        }
-      } else {
-        return $('#results').html(Handlebars.templates.noresults({}));
-      }
-    },
-    searchError: function(xhr, code, e) {
-      var context;
-      context = {
-        xhr: xhr,
-        code: code,
-        e: e
-      };
-      return $('#results').html(Handlebars.templates.results(context));
-    },
-    search: function(reset) {
-      var self;
-      if (reset == null) {
-        reset = true;
-      }
-      this.spin();
-      if (reset) {
-        this.summary.reset();
-        this.summary.render();
-        $('#results').html('');
-      }
-      self = this;
-      return $.ajax({
-        url: "/grep/" + ($("#app-name").val()),
-        dataType: "json",
-        context: this,
-        data: {
-          date: $("#date-str").val(),
-          offset: this.summary.offset,
-          main: $("#q-main").val()
-        },
-        success: this.searchSuccess,
-        error: this.searchError
-      });
-    },
     bindOptions: function() {
       var self;
       self = this;
+      $("#search-btn").click(function(event) {
+        event.preventDefault();
+        return self.search(true);
+      });
+      $("#tail-btn").click(function(event) {
+        event.preventDefault();
+        return self.tail;
+      });
       $("#auto-scroll").bind("change", function() {
         return self.autoScroll(this.checked);
       });
@@ -350,7 +285,130 @@
       this.compileTemplates();
       this.summary.reset();
       this.bindOptions();
-      return this.setButtons();
+      this.setButtons();
+      this.getNames();
+      return this.getDates();
+    },
+    setButtons: function() {
+      $('#search-btn').button();
+      return $('#tail-btn').button();
+    },
+    searchSuccess: function(data, code, xhr) {
+      var context, object;
+      this.summary.update(data);
+      $('#search-btn').button('reset');
+      if (data.count > 0) {
+        context = {
+          lines: (function() {
+            var _i, _len, _ref, _results;
+            _ref = data.lines;
+            _results = [];
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+              object = _ref[_i];
+              _results.push(new LogEntry(object));
+            }
+            return _results;
+          })()
+        };
+        $('#results').append(Handlebars.templates.results(context));
+        if (this.summary.canDoMore() && !this.stopped) {
+          return this.search(false);
+        } else {
+          return this;
+        }
+      } else {
+        return $('#results').html(Handlebars.templates.noresults({}));
+      }
+    },
+    searchError: function(xhr, code, e) {
+      var context;
+      return context = $('#results').html(Handlebars.templates.error({
+        xhr: xhr,
+        code: code,
+        e: e
+      }));
+    },
+    search: function(reset) {
+      var self;
+      if (reset == null) {
+        reset = true;
+      }
+      $('#search-btn').button('loading');
+      if (reset) {
+        this.summary.reset();
+        this.summary.render();
+        $('#results').html('');
+      }
+      self = this;
+      return $.ajax({
+        url: "/grep/" + ($("#app-name").val()),
+        dataType: "json",
+        context: this,
+        data: {
+          date: $("#date-str").val(),
+          offset: this.summary.offset,
+          main: $("#q-main").val()
+        },
+        success: this.searchSuccess,
+        error: this.searchError
+      });
+    },
+    tailSuccess: function(data, code, xhr) {
+      var context, object;
+      this.summary.update(data);
+      $('#search-btn').button('reset');
+      if (data.count > 0) {
+        context = {
+          lines: (function() {
+            var _i, _len, _ref, _results;
+            _ref = data.lines;
+            _results = [];
+            for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+              object = _ref[_i];
+              _results.push(new LogEntry(object));
+            }
+            return _results;
+          })()
+        };
+        $('#results').append(Handlebars.templates.results(context));
+        if (this.summary.canDoMore() && !this.stopped) {
+          return this.search(false);
+        } else {
+          return this;
+        }
+      } else {
+        return $('#results').html(Handlebars.templates.noresults({}));
+      }
+    },
+    tailError: function(xhr, code, e) {
+      return $('#results').html(Handlebars.templates.error(context)({
+        xhr: xhr,
+        code: code,
+        e: e
+      }));
+    },
+    tail: function(reset) {
+      if (reset == null) {
+        reset = true;
+      }
+      $('#tail-btn').button('loading');
+      if (reset) {
+        this.summary.reset();
+        this.summary.render();
+        $('#results').html('');
+      }
+      return $.ajax({
+        url: "/tail/" + ($("#app-name").val()),
+        dataType: "json",
+        context: this,
+        data: {
+          date: $("#date-str").val(),
+          offset: this.summary.offset,
+          main: $("#q-main").val()
+        },
+        success: this.tailSuccess,
+        error: this.searchError
+      });
     }
   };
 
@@ -359,13 +417,7 @@
   window.LogEntry = LogEntry;
 
   $(function() {
-    App.setup();
-    App.getNames();
-    App.getDates();
-    return $("#search-btn").click(function(event) {
-      event.preventDefault();
-      return App.search(true);
-    });
+    return App.setup();
   });
 
 }).call(this);

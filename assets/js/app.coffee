@@ -138,60 +138,17 @@ App =
       Handlebars.templates[name] = template
     Handlebars.templates
 
-  searchButton: ->
-    $('#search-btn')
-
-  setButtons: ->
-    @searchButton().button()
-
-  spin: ->
-    @searchButton().button('loading')
-
-  stopSpin: ->
-    @searchButton().button('reset')
-
-  searchSuccess: (data, code, xhr) ->
-    @summary.update data
-    @stopSpin()
-    if data.count > 0
-      context =
-        lines: for object in data.lines
-          new LogEntry(object)
-      $('#results').append Handlebars.templates.results(context)
-      if @summary.canDoMore() && !@stopped
-        @search false
-      else
-        @
-    else
-      $('#results').html Handlebars.templates.noresults({})
-
-  searchError: (xhr, code, e) ->
-    context =
-      xhr: xhr
-      code: code
-      e: e
-    $('#results').html Handlebars.templates.results(context)
-
-  search: (reset = true) ->
-    @spin()
-    if reset
-      @summary.reset()
-      @summary.render()
-      $('#results').html ''
-    self = this
-    $.ajax
-      url: "/grep/#{$("#app-name").val()}"
-      dataType: "json"
-      context: this
-      data:
-        date:   $("#date-str").val()
-        offset: @summary.offset
-        main:   $("#q-main").val()
-      success: @searchSuccess
-      error: @searchError
-
   bindOptions: ->
     self = @
+
+    $("#search-btn").click (event) ->
+      event.preventDefault()
+      self.search true
+
+    $("#tail-btn").click (event) ->
+      event.preventDefault()
+      self.tail
+
     $("#auto-scroll").bind "change", ->
       self.autoScroll @checked
     $("#auto-scroll").attr("checked", true).trigger "change"
@@ -240,6 +197,90 @@ App =
     @summary.reset()
     @bindOptions()
     @setButtons()
+    @getNames()
+    @getDates()
+
+  setButtons: ->
+    $('#search-btn').button()
+    $('#tail-btn').button()
+
+  searchSuccess: (data, code, xhr) ->
+    @summary.update data
+    $('#search-btn').button('reset')
+    if data.count > 0
+      context =
+        lines: for object in data.lines
+          new LogEntry(object)
+      $('#results').append Handlebars.templates.results(context)
+      if @summary.canDoMore() && !@stopped
+        @search false
+      else
+        @
+    else
+      $('#results').html Handlebars.templates.noresults({})
+
+  searchError: (xhr, code, e) ->
+    context =
+    $('#results').html Handlebars.templates.error
+      xhr: xhr
+      code: code
+      e: e
+
+  search: (reset = true) ->
+    $('#search-btn').button('loading')
+    if reset
+      @summary.reset()
+      @summary.render()
+      $('#results').html ''
+    self = this
+    $.ajax
+      url: "/grep/#{$("#app-name").val()}"
+      dataType: "json"
+      context: this
+      data:
+        date:   $("#date-str").val()
+        offset: @summary.offset
+        main:   $("#q-main").val()
+      success: @searchSuccess
+      error: @searchError
+
+  tailSuccess: (data, code, xhr) ->
+    @summary.update data
+    $('#search-btn').button('reset')
+    if data.count > 0
+      context =
+        lines: for object in data.lines
+          new LogEntry(object)
+      $('#results').append Handlebars.templates.results(context)
+      if @summary.canDoMore() && !@stopped
+        @search false
+      else
+        @
+    else
+      $('#results').html Handlebars.templates.noresults({})
+
+  tailError: (xhr, code, e) ->
+    $('#results').html Handlebars.templates.error(context)
+      xhr: xhr
+      code: code
+      e: e
+
+  tail: (reset = true) ->
+    $('#tail-btn').button('loading')
+    if reset
+      @summary.reset()
+      @summary.render()
+      $('#results').html ''
+    $.ajax
+      url: "/tail/#{$("#app-name").val()}"
+      dataType: "json"
+      context: this
+      data:
+        date:   $("#date-str").val()
+        offset: @summary.offset
+        main:   $("#q-main").val()
+      success: @tailSuccess
+      error: @searchError
 
 
 window.App = App
@@ -247,9 +288,3 @@ window.LogEntry = LogEntry
 
 $ ->
   App.setup()
-  App.getNames()
-  App.getDates()
-
-  $("#search-btn").click (event) ->
-    event.preventDefault()
-    App.search true
